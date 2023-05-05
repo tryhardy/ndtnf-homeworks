@@ -1,15 +1,19 @@
 interface Book {
-    name: string;
-    isbn: string;
+    title: string;
+    id: string | undefined;
+    description: string | undefined;
+    authors: string | undefined;
+    favotire: number | undefined;
+    fileCover: string | undefined;
+    filePath: string | undefined;
+    fileBook: string | undefined;
 }
 
-const book: Book = {
-    name: "Книга",
-    isbn: "1234567890"
-}
+abstract class BooksRepository {
+    abstract createBook(book: Book) : string | false;
+    abstract updateBook(book: Book) : boolean;
+    abstract deleteBook(id: string) : boolean;
 
-const content = document.getElementById("content");
-
-if (content) {
-    content.textContent = "Название книги: " + book.name;
+    abstract getBook(id: string) : Book;
+    abstract getBooks(): Array<Book>;
 }
